@@ -1,0 +1,1768 @@
+\documentclass[10pt]{beamer}
+\usepackage{etex}
+\usetheme{Madrid}
+
+
+%BASIC PACKAGES
+%\usepackage[T1]{fontenc} % correct output rendering as first packages
+\usepackage[utf8]{inputenc} % correct input typing as second package
+%% gives \llparenthesis, \llceil, \llbracket, and right correspondent
+\usepackage[english]{babel} 
+\usepackage{csquotes} %virgolette
+\usepackage{appendixnumberbeamer}% insert this in order to reset counting for appendix. You also need to inserto \appendix at the beginning of the appendix and in the first frame you want to reset counter you have to write \begin{frame}[noframenumbering]   this is  the content of the frame  \end{frame}
+%------------------------------------------
+
+%BASIC MATH PACKAGES
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+%\usepackage{latexsym}
+%------------------------------------------
+
+
+
+%ADVANCED MATH PACKAGES
+%\usepackage{MnSymbol} % don't use this package: clash with \mathbf ("Too many math alphabets ...")
+\usepackage{stmaryrd} 
+\usepackage{mathrsfs} % for  mathscr 
+\usepackage{mathpartir} % display proof systems and proofs
+\usepackage{bussproofs} %display proofs
+%\usepackage{mathtools}
+\usepackage{cmll} %linear logic
+\usepackage{mathrsfs}  
+%\usepackage{latexsym}
+\usepackage{virginialake}
+\usepackage[d]{esvect} %extended vectors
+%-------------------------------------------
+
+
+%FIGURES  PACKAGES
+\usepackage[size=small,captionskip=20pt]{subfig} %replaced by subcaption
+%\usepackage{subcaption} %recent than subfig (subfigure is obsolete)
+\usepackage[size=tiny,skip=5pt]{caption}
+\usepackage{framed} % to give a frame for figures
+\usepackage{graphicx} %to include graphics
+\usepackage{adjustbox} % to adjust graphics
+\usepackage{lscape}%a full horizontal page
+\usepackage{afterpage}%eliminates white spaces before lscape 
+\usepackage{rotating}%rotates figures
+\usepackage[listings, fitting, breakable, external, hooks, magazine, poster, raster, skins, theorems,vignette, xparse]{tcolorbox}
+%---------------------------------------------
+
+
+
+%LISTS AND TABLES PACKAGES
+\usepackage{longtable} % break tables (to break arrays use \allowdisplaybreaks)
+%\usepackage{array}
+%----------------------------------------------
+
+
+
+%TIKZ PACHAGES
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes.callouts}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{matrix}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning} % draw simple graphs
+\usepackage{tikz-cd} %categories
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{blkarray}
+\usepackage{framed}
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\usepackage{wrapfig}
+\usetikzlibrary{positioning,calc,arrows,shapes,  tikzmark, decorations.pathreplacing}
+%--------------------------------------
+
+
+
+%HYPERREFERENCES, COMMENTS, REMARKS
+\usepackage{hyperref} %hyperreference
+\usepackage{xcolor} %coloring text and math expressions
+%\usepackage{colortbl}
+\usepackage{cancel}  %% \bcancel{expression}
+%---------------------------------------------
+
+
+
+
+
+%OTHERPACKAGES
+%\usetikzlibrary{calc}
+\usepackage{multicol}
+\usepackage{microtype}
+\usepackage{xcolor}
+%\usepackage{microtype}
+\usepackage{multirow}
+%\usepackage{blkarray}
+%%\def\fCenter{{\mbox{\Large$\rightarrow$}}}
+%\def\fCenter{\ \vdash\ }
+%\EnableBpAbbreviations
+\usepackage{lmodern}
+\theoremstyle{definition}
+\newtheorem{definizione}{Definizione}
+\theoremstyle{plain}
+\newtheorem{teorema}{Teorema}
+%--------------------------------------
+
+%MACROS
+
+%formatting
+
+\newcommand{\dfn}{:=}
+\renewcommand{\emptyset}{\varnothing}
+
+
+\newcommand{\red}[1]{{\color{red}#1}}
+\newcommand{\blue}[1]{{\color{blue}#1}}
+\newcommand{\purple}[1]{{\color{purple}#1}}
+\definecolor{mygreen}{rgb}{0, 0.5, 0}
+\newcommand{\green}[1]{{\color{mygreen}#1}}
+\newcommand{\brown}[1]{{\color{brown}#1}}
+\newcommand{\orange}[1]{{\color{orange}#1}}
+\newcommand{\black}[1]{{\color{black}#1}}
+\newcommand{\cyan}[1]{{\color{cyan}#1}}
+
+\newcommand{\anupam}[1]{\todo{Anupam: #1}}
+\newcommand{\gianluca}[1]{\todo{Gianluca: #1}}
+
+\renewcommand{\red}{\alert}
+
+
+%sets
+
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\N}{\Nat}
+\newcommand{\Bool}{\mathbf{Bool}}
+\newcommand{\cod}[1]{\underline{#1}}
+\newcommand{\true}{\mathsf{1}}
+\newcommand{\false}{\mathsf{0}}
+
+
+
+
+
+%functions
+
+
+\newcommand{\fptime}{\mathbf{FP}}
+%\newcommand{\ptime}{\mathbf{PTIME}}
+\newcommand{\ptime}{\mathbf{P}}
+\newcommand{\fppoly}{\fptime/\mathsf{poly}}
+\newcommand{\flpoly}{\mathbf{FL}/\mathsf{poly}}
+\newcommand{\ppoly}{\ptime/\mathsf{poly}}
+\newcommand{\lpoly}{\mathbf{L}/\mathsf{poly}}
+\newcommand{\nl}{\mathbf{NL}}
+\newcommand{\conl}{\mathbf{coNL}}
+
+
+
+
+%proofs
+
+\newcommand{\id}{\mathsf{id}}
+\newcommand{\wk}{\mathsf{w}}
+\newcommand{\exch}{\mathsf{e}}
+\newcommand{\cntr}{\mathsf{c}}
+\newcommand{\cut}{\mathsf{cut}}
+\newcommand{\pcut}{\mathsf{pcut}}
+\newcommand{\boxlef}{\sq_l}
+\newcommand{\boxrig}{\sq_r}
+\newcommand{\sql}{\boxlef}
+\newcommand{\sqr}{\boxrig}
+\newcommand{\zero}{hyp}
+\newcommand{\com}{\mathsf{com}}
+\newcommand{\rules}{\mathsf{r}}
+
+
+
+%systems
+
+\newcommand{\cyclic}{\mathsf{C}}
+
+
+
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=1pt, blue] (char) {#1};}}
+
+
+%COPERTINA
+\author[]{ Matteo Acclavio \inst{1} \and  \underline{Gianluca Curzi} \inst{2} \and Giulio Guerrieri \inst{3}}
+\institute[]{\inst{1} University of Southern Denmark  \and \inst{2} University of Gothenburg \and \inst{3} Aix Marseille Université}
+\title[]{Infinitary cut-elimination via finite approximations \\[3ex] \textbf{\normalsize{Marseille, 15 September 2023}}}
+\setbeamercovered{dynamic} 
+\logo{} 
+\date[]{}
+%\institute[Unito]{Università di Torino\\ Dipartimento di Informatica} 
+%\date[July 8-11 2020]{July 8-11 2020}
+%--------------------------------------
+
+
+
+
+%IMPOSTAZIONISLIDES
+\useoutertheme{infolines}
+\setbeamertemplate{navigation symbols}{} 
+\setbeamercovered{dynamic}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor*{palette primary}{fg=black}
+\setbeamercolor*{palette secondary}{fg=black}
+\setbeamercolor*{palette tertiary}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{subsection in toc}{fg=black}
+\setbeamercolor{section number projected}{bg=black,fg=yellow}
+
+
+\definecolor{mygreen}{rgb}{0, 0.5, 0}
+%\definecolor{myred}{rgb}{0.5, 0, 0}
+\definecolor{myred}{rgb}{0.8, 0, 0}
+\definecolor{myblue}{rgb}{0, 0, 0.5}
+\definecolor{lightblue}{rgb}{0.4, 0.6, 0.8}
+\definecolor{myviolet}{rgb}{0.59, 0.29, 0}
+\setbeamercolor{alerted text}{fg=myred}
+\newcommand{\MG}[1]{ \color{mygreen} {#1}\color{black}}
+\newcommand{\MR}[1]{ \color{myred} {#1}\color{black}}
+\newcommand{\MB}[1]{ \color{myblue} {#1}\color{black}}
+\newcommand{\LB}[1]{ \color{lightblue} {#1}\color{black}}
+\newcommand{\MV}[1]{ \color{myviolet} {#1}\color{black}}
+\newcommand{\rddots}{\rotatebox{90}{$\ddots$}}
+
+\setbeamertemplate{itemize subsubitem}[circle]
+\setbeamertemplate{itemize subitem}[triangle]
+\setbeamertemplate{itemize item}[square]
+\setbeamercolor{itemize item}{fg=black} 
+\setbeamercolor{itemize subitem}{fg=black} 
+\setbeamercolor{itemize subsubitem}{fg=black} 
+\newcommand\coloreditem[1]{\item[\textcolor{#1}{\usebeamertemplate{itemize  item}}]}
+\newcommand\coloredsubitem[1]{\item[\textcolor{#1}{\usebeamertemplate{itemize  subitem}}]}
+
+
+%\newtcolorbox{mybox}[1]{colback=white, colframe=myred,fonttitle=\bfseries, hbox,  boxrule=0.5pt, title={\centering {#1}}}
+\newtcbox{\mybox}{colback=white, colframe=black, boxrule=0.5pt}
+
+
+%\newtcolorbox{mybox}[2][]{colback=white, colframe=myred,fonttitle=\bfseries, colbacktitle=white, coltitle= myred,   enhanced,
+	%	attach boxed title to top center={yshift=-2mm}, boxrule=0.5pt, hbox,
+	%	title={#2},{#1}}
+%hbox fits the box to text, boxrule set line width
+
+
+%\setbeamercolor{block}{fg=white, bg=white}
+%\setbeamercolor{block title} {use=,fg=structure,bg=gray!5}
+%\setbeamercolor{block title alerted}{use=alerted text, fg=alert ,bg=gray!5}
+%\setbeamercolor{block title example}{use=example text,fg=mygreen,bg=gray!5}
+%\setbeamercolor{block body} {parent=normal text,use=block title,bg=gray!5} 
+%\setbeamercolor{block body alerted}
+%{parent=normal text,use=block title alerted, bg=gray!5}
+%\setbeamercolor{block body example} {parent=normal text,use=block title example,
+	%bg=gray!5}
+
+%--------------------------------------
+
+
+
+\newcommand{\LJ}{\mathsf{LJ}}
+\newcommand{\LJneg}{\LJ^-}
+\newcommand{\T}{\mathsf{T}}
+\newcommand{\F}{\mathsf{F}}
+\newcommand{\muLJ}{\mu\LJ}
+\newcommand{\muLJnorec}{\mu'\LJ}
+\newcommand{\muLJneg}{\muLJ^-}
+\newcommand{\muLJnegnorec}{\muLJnorec^-}
+
+\newcommand{\circular}{\mathsf C}
+\newcommand{\cmuLJ}{\circular\muLJ}
+\newcommand{\cmuLJneg}{\cmuLJ^-}
+\newcommand{\muLJm}{\cmuLJneg} %legacy
+\newcommand{\MALL}{\mathsf{MALL}}
+\newcommand{\muMALL}{\mu\MALL}
+
+
+\newcommand{\cprule}[0]{cp}
+\newcommand{\vldr}[2]{\vltr{#1}{#2}{\vlhy{\ }}{\vlhy{\ }}{\vlhy{\ }}}
+\newcommand{\cneg}[1]{{#1}^\perp }
+
+
+
+\newcommand{\der}{\mathcal{D}}
+\newcommand{\pll}{\mathsf{PLL}}
+\newcommand{\nwpll}{\pll^{\!\infty}}
+\newcommand{\dpll}{\mathsf{nu}\pll}
+%\newcommand{\nupll}{\mathsf{nu}\nwpll}
+\newcommand{\nupll}{\mathsf{wr}\nwpll}
+%\newcommand{\cpll}{\mathsf{c}\nwpll}
+\newcommand{\cpll}{\mathsf{r}\nwpll}
+\newcommand{\opll}{\mathsf{o}\nwpll}
+\newcommand{\ppll}{\mathsf{p}\nwpll}
+\newcommand{\wppll}{\mathsf{w}\ppll}
+\newcommand{\fepll}{\mathsf{fe}\nwpll}
+
+
+\newcommand{\ices}{\mathsf{ices}}
+\newcommand{\mcices}{\mathsf{mc}\text{-}\mathsf{ices}}
+\renewcommand{\lim}[2]{\mathsf{lim}_{#1}{\left( {#2 }\right)}}
+
+\begin{document}
+	\begin{frame}[noframenumbering, plain]
+		\maketitle
+	\end{frame}
+	
+	\begin{frame}{What is this talk about?}
+		\medskip
+\begin{itemize}
+	\item \textbf{Non-wellfounded proof theory} = possibly infinite (but finitely branching) trees,  logical consistency  maintained via global proof-theoretic conditions 
+	\medskip
+	\item Model \textbf{least and
+	greatest fixed points} $\Longrightarrow$  induction  and coinduction
+\bigskip \bigskip\pause 
+\item[] \red{\textbf{This talk:} }
+	\smallskip
+	\begin{itemize}
+		\item[(1)] \structure{Parsimonious linear logic} (inspired by~\cite{MazzaT15,Mazza15})
+		\medskip
+\item[(2)] 	Linear logic modalities as least and greatest fixed points:   \textbf{streams vs lists} 
+\medskip\pause 
+\item[(3)] \textbf{Non-wellfounded proof systems} based on parsimonious linear logic:
+\[
+\structure \nupll \textrm{ (non-uniform)} \quad \textrm{vs} \quad \structure\cpll \textrm{ (uniform)}
+\]
+\item[(4)] \textbf{Continuous cut-elimination} for $\nupll$ and $\cpll$ with preservation proof-theoretic conditions
+\end{itemize}
+	\end{itemize}
+	\end{frame}
+	
+	
+%	\section{Background}
+%		\begin{frame}[plain, noframenumbering]
+%		\tableofcontents[currentsection]
+%	\end{frame}
+%	
+	
+\section{Non-wellfounded and regular proofs}
+\begin{frame}[plain, noframenumbering]
+	\tableofcontents[currentsection]
+\end{frame}
+\begin{frame}{Non-wellfounded proofs}
+	\vspace{0.5cm}
+	\begin{itemize}\setlength\itemsep{0.5cm}
+		\item[] Inductive vs \structure{non-wellfounded} proofs:
+		\vspace{0.2cm}
+		\[
+		\tiny
+		\hspace{-1cm}\vlderivation{
+			\vltr{rules}{\Gamma}{\vlhy{ax}}{\vlhy{\ldots}}{\vlhy{ax}}
+		}
+		\qquad \qquad  \alert{vs} \qquad \qquad 
+		\vlderivation{
+			\vltr{rules}{\Gamma }{\vlhy{\ddots}}{
+				\vltr{rules}{\Gamma' }{\vlhy{\ddots}}{
+					\vlhy{}
+				}{\vlhy{\rddots}}
+			}{\vlhy{\rddots}}
+		}
+		\]
+		
+		\item[] \textbf{Non-wellfounded proofs}  to reason about  $\mu$-calculus (e.g.~\cite{niwinski1996games,DaxHL06} ), (co)induction (e.g.~\cite{brotherston2011sequent}),  Kleene algebra (e.g.~\cite{das:pous:non-well}),  \red{linear logic} (e.g.~\cite{BaeldeDS16,BaeldeM07}), \red{continuous cut-elimination} (e.g.~\cite{mints1978finite,fortier2013cuts}).
+	\end{itemize}    
+\end{frame}
+\begin{frame}
+	\begin{itemize}\setlength\itemsep{1.5cm}
+		\item[] \textbf{Problem.} Any formula is derivable!
+		\vspace{0.5cm}
+		\[
+		\small
+		\vlderivation{
+			\vliin{\cut}{}{  A}
+			{
+				\vliin{\cut}{}{  A}
+				{
+					\vlhy{\overset{\overset{\vdots}{\phantom{A}}}{ A}}
+				}
+				{\vlin{\id}{}{ \cneg{A},  A}{\vlhy{}}}
+			}
+			{\vlin{\id}{}{ \cneg{A} , A}{\vlhy{}}}
+		}
+		\]
+		\pause
+		\item[]  \structure{Progressiveness criterion} = global criterion to guarantee \textbf{consistency}
+	\end{itemize} 
+\end{frame}
+\begin{frame}{Regular proofs}
+	\vspace{0.5cm}
+	\begin{itemize}
+		\item[] \structure{Regular proofs} = only \textbf{finitely} many distinct subproofs. 
+		\bigskip
+		\item[] \structure{Cycle normal form} = finite, \enquote{cyclic} presentation of a regular proof.
+		\only<1-1>{
+			\visible<1-1>{
+				\[ \tiny
+				\begin{array}{rcl}
+					\hspace{-1cm}
+					\vlderivation{
+							\vltr{\der}{\Gamma}
+							{\vlhy{\ddots}}
+							{
+									\vltr{\der}{\Gamma }
+									{\vlhy{\ddots}}
+									{}
+									{\vlhy{\rddots}}
+							}
+							{\vlhy{\rddots}}
+					} 
+					& 
+					\qquad \quad \red{\Longrightarrow} \qquad \quad   
+					& 
+					\vlderivation{
+							\vltr{\der}{\tikzmarknode{b}{ \Gamma}   }
+							{\vlhy{
+									\ddots
+							}}
+							{
+							\vlhy{\tikzmarknode{a}{\Gamma }}
+							}
+							{\vlhy{
+									\rddots
+							}}
+					}  
+					\begin{tikzpicture}[overlay, remember picture]
+						\draw [-, thick, gray] ([shift=({0,0.1})]a.north) 
+						.. controls +(90:0.5cm) and   +(90:1cm) ..
+						(0.5, 0);
+						\draw [->,>=latex,thick, gray] (0.5, 0)
+						.. controls +(-90:1cm) and   +(-90:0.5cm) ..
+						([shift=({0,-0.1})]b.south);
+					\end{tikzpicture}
+				\end{array}
+				\]
+		}}
+	\end{itemize}
+\end{frame}
+
+
+\section{Linear logic and fixed points}
+\begin{frame}[plain, noframenumbering]
+	\tableofcontents[currentsection]
+\end{frame}
+
+
+
+
+\begin{frame}{Exponentials as fixed points}
+	\begin{itemize}
+		\item Linear logic with fixed points introduced in~\cite{BaeldeM07},  developed in~\cite{BaeldeDS16}
+		\medskip
+		\item Exponential modalities as fixed points:
+		\[
+		\def\arraystretch{1.5}
+		\begin{array}{rcl}
+			\wn A &\dfn& \mu X(\bot \oplus A \oplus (X \parr X))\\
+			\oc A	&\dfn& \nu X(\mathbf{1} \with A \with (X \otimes X) )
+		\end{array}
+		\]
+		\smallskip
+		\item[] \structure{$\muMALL$} = exponential-free fragment of linear logic with $\mu$ and $\nu$
+		\medskip
+		\item[] \structure{$\muMALL^\infty$} =  non-wellfounded version of $\muMALL$\bigskip\pause 
+		\item Some previous  \textbf{results}:
+		\smallskip
+		\begin{itemize}
+			\item[(1)] Continuous cut-elimination for  $\muMALL^\infty$~\cite{BaeldeDS16}\medskip
+			\item[] \ldots extended to $\muLJ^\infty$ and $\mu\mathsf{LL}^\infty$ via the  fixed point exponentials~\cite{Saurin}\medskip
+			\item[(2)]  $\muMALL$, $\muLJ$, $\mu\mathsf{LL}$ and their cyclic formulations represent the same functions on natural numbers~\cite{Curzi023}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Splendor and misery of fixed point exponentials}
+	\medskip
+	\begin{itemize}
+		\item[(1)] Multisets vs lists:  $\oc (A \with B) \not \simeq \oc A \otimes \oc B $ (Seely isomorphisms)
+		\[
+		\def\arraystretch{1.5}
+		\begin{array}{rcl}
+			\oc A	&\dfn& \nu X(\mathbf{1} \with A \with (X \otimes X) )
+		\end{array}
+		\]
+		\pause 
+		\item[(2)] Cut-elimination behaves differently
+		\medskip\pause  \bigskip
+		\item[(3)] A silver lining: \textbf{non-uniformity}
+		\[\tiny
+%		\vlderivation{
+%			\vltr{}{\oc A}
+%			{ 
+%				\vltr{ \red{\der_1}}{A}
+%				{
+%					\vlhy{\ }
+%				}
+%				{\vlhy{\ }}
+%				{
+%					\vlhy{\ }
+%				}
+%			}
+%			{\vlhy{}}
+%			{
+%				\vltr{}{\oc A}
+%				{
+%					\vltr{\red{\der_1}}{ A}
+%					{
+%						\vlhy{\ }
+%					}
+%					{\vlhy{\ }}
+%					{
+%						\vlhy{\ }
+%					}
+%				}
+%				{\vlhy{}}
+%				{
+%					\vlhy{\vdots}
+%				}
+%			}
+%		}
+%		\qquad \mathrm{vs} \qquad 
+		\vlderivation{
+			\vltr{}{\oc A}
+			{ 
+				\vltr{ \blue{\der_1}}{A}
+				{
+					\vlhy{\ }
+				}
+				{\vlhy{\ }}
+				{
+					\vlhy{\ }
+				}
+			}
+			{\vlhy{}}
+			{
+				\vltr{}{\oc A}
+				{
+					\vltr{\orange{\der_2}}{ A}
+					{
+						\vlhy{\ }
+					}
+					{\vlhy{\ }}
+					{
+						\vlhy{\ }
+					}
+				}
+				{\vlhy{}}
+				{
+					\vlhy{\vdots}
+				}
+			}
+		}
+		\]
+%		\item[] Exponentials are not \textbf{canonical}~\cite{quatrini:phd,DanosJ03}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Parsimonious linear logic}
+	\begin{itemize}
+		\item \textbf{Parsimonious logic} introduced by Mazza in~\cite{Mazza15,MazzaT15} and motivated by complexity-theoretic purposes (characterisation of $\fppoly$ and $\fptime$)
+\pause 
+				\bigskip\bigskip
+		\coloreditem{myred} \red{\textbf{This talk:}} \textbf{Parsimonious linear logic}, a subsystem  of linear logic based on the principles of parsimonious logic 
+		\bigskip
+		\item[] \only<1-2>{Equivalent presentation of linear logic:}\only<3->{\structure{Parsimonious linear logic ($\pll$):}}
+		\only<1-2>
+		{
+			\[
+			\vlinf{dig}{}{\Gamma, \wn A}{\Gamma, \wn \wn A} \qquad \qquad 
+			\vlinf{fp}{}{\wn \Gamma, \oc A}{ \Gamma, A}\qquad \qquad 
+			\vlinf{w}{}{\Gamma, \wn A}{\Gamma}\qquad \qquad 
+			\vlinf{abs}{}{\Gamma, \wn A}{\Gamma,  A, \wn A}
+			\]
+			$
+			\footnotesize
+			\begin{array}{cccc}
+				\qquad  \qquad \textrm{digging}& \qquad \quad  \ \  \textrm{functorial} & \qquad \ \  \textrm{weakening}& \qquad \quad \ \   \textrm{absorption}\\
+				\qquad  \qquad  &  \qquad  \quad \ \ \textrm{promotion}
+			\end{array}
+			$
+		}
+		\only<3->
+		{
+			\[
+			{\color{red}\xcancel{ {\color{black}	\vlinf{dig}{\ \ }{\Gamma, \wn A}{\Gamma, \wn \wn A}}}} \qquad \qquad 
+			\vlinf{fp}{}{\wn \Gamma, \oc A}{ \Gamma, A}\qquad \qquad 
+			\vlinf{w}{}{\Gamma, \wn A}{\Gamma}\qquad \qquad 
+			\vlinf{abs}{}{\Gamma, \wn A}{\Gamma,  A, \wn A}
+			\]
+			$
+			\footnotesize
+			\begin{array}{cccc}
+				\qquad  \quad\ \  \textrm{digging}& \qquad \qquad \quad   \textrm{functorial} & \qquad \ \    \textrm{weakening}& \qquad \quad \ \   \textrm{absorption}\\
+				\qquad  \quad\ \   &  \qquad  \qquad \quad  \textrm{promotion}
+			\end{array}
+			$
+		}
+
+		%\[
+		%\begin{array}
+		%\vlderivation{
+			%\vliin{{cut}}{}{A}{\vlin{fp}{}{\oc A}{ \vltr{\der}{ A}{\vlhy{}}{\vlhy{}}{\vlhy{}}}} 
+			%  {
+				%  	\vlin{abs}{}{\wn A^\perp, A}{\vlin{{w}}{}{A^\perp, \wn A^\perp, A}{\vlin{{ax}}{}{A^\perp, A}{\vlhy{}}}}
+				%  }
+			%}
+		%\end{array}
+		%\]
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Non-uniform parsimonious linear logic}
+	\medskip
+	\begin{itemize}
+		\item[] \textbf{Key idea.}   $\oc A$ as a type of streams: \quad  
+%		$\footnotesize
+%		\begin{array}{rcl}
+%			\vlderivation{
+%				\vlin{fp}{}{\oc A}{ \vltr{\der}{ A}{\vlhy{}}{\vlhy{}}{\vlhy{}}} 
+%			}
+%			&\sim&
+%			\langle \der, \der, \ldots, \der, \ldots \rangle 
+%		\end{array}
+%			$
+		%\qquad \quad 
+		%\begin{array}{rcl}
+		%	\vlderivation{
+			%		\vlin{abs}{}{ \wn A^\perp, A \otimes \wn A}
+			%		{
+				%			\vliin{\otimes}{}{A^\perp , \wn A^\perp, A \otimes \wn A} 
+				%			{
+					%				\vlin{{ax}}{}{A^\perp, A}{\vlhy{}}
+					%			}
+				%			{
+					%				\vlin{{ax}}{}{\wn A^\perp, \wn A}{\vlhy{}}
+					%			}
+				%		}
+			%	}
+		%	&\sim&
+		%	\mathsf{pop}: \oc A \multimap A \otimes \oc A
+		%\end{array}
+ 	\[
+		\footnotesize
+		\begin{array}{rcl}
+			\vlderivation{
+				\vliin{cut}{}{\red{A} \otimes \green{\oc A}}
+				{
+					\vlin{\green{fp}}{}{\green{\oc A}}{  \vltr{\green{\der}}{\green{ A}}{\vlhy{}}{\vlhy{}}{\vlhy{}}} 
+				}{
+					\vlin{\orange{abs}}{}{\orange{ \wn A^\perp}, A \otimes \wn A}
+					{
+						\vliin{\otimes}{}{\orange{A^\perp} ,\orange{ \wn A^\perp}, A \otimes \wn A} 
+						{
+							\vlin{{ax}}{}{A^\perp, A}{\vlhy{}}
+						}
+						{
+							\vlin{{ax}}{}{\wn A^\perp, \wn A}{\vlhy{}}
+						}
+					}
+				}
+			}
+			&\qquad \rightsquigarrow^* \qquad & 
+			\vlderivation{
+				\vliin{\otimes}{}{\red{A} \otimes \green{\oc A}}
+				{    
+					\vltr{\red{\der}}{ \red{A}}{\vlhy{}}{\vlhy{}}{\vlhy{}}
+				}
+				{
+					\vlin{\green{fp}}{}{\green{\oc A}}{ \vltr{\green{\der}}{ \green{A}}{\vlhy{}}{\vlhy{}}{\vlhy{}}} 
+				}
+			}\\ \\ 
+			\orange{\mathsf{pop} }\,  \green{\langle} \red{\der}\green{, \der, \ldots, \der, \ldots \rangle} & &  \red{\der} \otimes  \green{\langle \der, \der, \ldots, \der, \ldots \rangle}
+		\end{array}
+		\]\pause 
+	\bigskip \medskip
+		\item[]  \structure{Non-uniform $\pll$ ($\dpll$)} = generalise $fp$ to interpret  $\oc A$ as a type of streams over \emph{finite} data of type $A$:
+		\[\footnotesize
+		\begin{array}{rcl}
+			\vlderivation{
+				\vliiiiin{nufp}{\text{\scriptsize $\{\der_i\mid i\in\mathbb{N}\}$ is finite}}{\oc A}{ \vltr{\der_1}{ A}{\vlhy{\ }}{\vlhy{\ }}{\vlhy{\ }}} { \vltr{\der_2}{ A}{\vlhy{\ }}{\vlhy{\ }}{\vlhy{\ }}} {\vlhy{\ldots}}{ \vltr{\der_n}{ A}{\vlhy{\ }}{\vlhy{\ }}{\vlhy{\ }}} {\vlhy{\ldots}}
+			}
+			&\sim&
+			\langle \der_1, \der_2, \ldots, \der_n, \ldots \rangle 
+		\end{array}
+		\]
+	\end{itemize}
+\end{frame}
+
+
+\section{Non-wellfounded parsimonious linear logic}
+\begin{frame}[plain, noframenumbering]
+	\tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{Non-uniformity via non-wellfoundedness}
+	\medskip
+	\begin{itemize}
+		\item[] From (wellfounded) \textbf{infinitely branching} to \textbf{non-wellfounded} (finitely branching):
+			\vspace{-0.3cm}
+		\[
+		\scriptsize
+		\begin{array}{c}
+			\vlderivation{
+				\vliiiiin{nufp}{\text{\scriptsize \red{$\{\der_i\mid i\in\mathbb{N}\}$ is finite}}}{\oc A}{ \vltr{\der_1}{ A}{\vlhy{\ }}{\vlhy{\ }}{\vlhy{\ }}} { \vltr{\der_2}{ A}{\vlhy{\ }}{\vlhy{\ }}{\vlhy{\ }}} {\vlhy{\ldots}}{ \vltr{\der_n}{ A}{\vlhy{\ }}{\vlhy{\ }}{\vlhy{\ }}} {\vlhy{\ldots}} 
+			}
+			\\ \\  \green{\Downarrow} \qquad \\[-1ex]
+	\hspace{-2.5cm}	\textrm{\structure{non-wellfounded box}} \quad =\quad 	\vlderivation{
+				\vliin{\cprule}{}{\wn \Gamma, \oc A}{\vldr{\der_0}{\Gamma, A}}{
+					\vliin{\cprule}{}{{\wn \Gamma, \oc A}}{\vldr{\der_1}{\Gamma, A}}{				 			
+						\vliin{\cprule}{}{\reflectbox{$\ddots$}}{\vldr{\der_n}{\Gamma, A}}{
+							\vlin{\cprule}{}{{\wn \Gamma, \oc A}}{\vlhy{\vdots}}
+						}
+					}
+				}
+			}
+		\end{array}
+		\]
+		\pause 
+		\item[] (Partial) \textbf{recipe}:
+		\begin{itemize}
+			\item[(1)] Replace $nufp$ with \structure{conditional promotion} ($cp$): \quad 
+			$
+			\vliinf{cp}{}{\wn \Gamma, \oc A}{\Gamma, A}{\wn \Gamma, \oc A}
+			$
+			\item[(2)]\structure{Progressing condition} =  logical consistency
+			\medskip
+			\item[(3)] \structure{Weak regularity} =  \red{finiteness} condition on $nufp$
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Non-wellfounded parsimonious linear logic}
+	\medskip
+	\begin{itemize}
+	\item[] \structure{Non-wellfounded parsimonious linear logic ($\nwpll$)} = proofs coinductively generated from
+	\[
+	\footnotesize
+		\vlinf{ax}{}{A, \cneg A}{}
+		\qquad
+		\vliinf{cut}{}{ {\Gamma}, {\Delta}}{ {\Gamma}, A}{\cneg A,{\Delta}}
+		\qquad 
+		\vlinf{ex}{}{ {\Gamma}, {A}, {B}, {\Delta}}{ {\Gamma}, {B}, {A}, {\Delta}}
+		\qquad 
+		\vlinf{\parr}{}{ {\Gamma}, A \parr B}{ {\Gamma}, A , B}
+		\qquad 
+		\vliinf{\otimes}{}{ {\Gamma}, {\Delta},A \otimes B}{ {\Gamma}, A}{B, {\Delta}}
+	\]
+	\smallskip
+	\[
+	\footnotesize
+		\vliinf{cp}{}{\wn \Gamma, \oc A}{\Gamma, A}{\wn \Gamma, \oc A}
+		\qquad 
+		\vlinf{w}{}{ {\Gamma}, \wn A}{ {\Gamma}}
+		\qquad 
+		\vlinf{abs}{}{ {\Gamma}, {\wn A}}{ {\Gamma}, A, {\wn A}}
+	\]
+	\bigskip\pause
+	\item[] \structure{Progressing proof} = any infinite branch has a \emph{thread}  of $\oc$-formulas that is infinitely often principal for $\cprule$ rule
+	\only<1-2>
+	{
+		\[
+	\small
+	\vlderivation{
+		\vliin{\cut}{}{  A}
+		{
+			\vliin{\cut}{}{  A}
+			{
+				\vlhy{\overset{\overset{\vdots}{\phantom{A}}}{ A}}
+			}
+			{\vlin{\id}{}{ \cneg{A},  A}{\vlhy{}}}
+		}
+		{\vlin{\id}{}{ \cneg{A} , A}{\vlhy{}}}
+	}
+	\]
+}
+\only<3-3>{
+\[
+\footnotesize
+\begin{array}{c}
+	\vlderivation{
+		\vliin{\cprule}{}{\wn \Gamma, \black{\oc A}}{\vldr{\der_0}{\Gamma, A}}{
+			\vliin{\cprule}{}{{\wn \Gamma, \black{\oc A}}}{\vldr{\der_1}{\Gamma, A}}{				 			
+				\vliin{\cprule}{}{\reflectbox{$\ddots$}}{\vldr{\der_n}{\Gamma, A}}{
+					\vlin{\cprule}{}{{\wn \Gamma, \black{\oc A}}}{\vlhy{\vdots}}
+				}
+			}
+		}
+	}
+\end{array}
+\]
+}
+\only<4-4>{
+	\[
+	\footnotesize
+	\begin{array}{c}
+		\vlderivation{
+			\vliin{\cprule}{}{\wn \Gamma, \red{\oc A}}{\vldr{\der_0}{\Gamma, A}}{
+				\vliin{\cprule}{}{{\wn \Gamma, \red{\oc A}}}{\vldr{\der_1}{\Gamma, A}}{				 			
+					\vliin{\cprule}{}{\reflectbox{$\ddots$}}{\vldr{\der_n}{\Gamma, A}}{
+						\vlin{\cprule}{}{{\wn \Gamma, \red{\oc A}}}{\vlhy{\vdots}}
+					}
+				}
+			}
+		}
+	\end{array}
+	\]
+}
+\only<5-5>
+{
+	\[
+	\footnotesize
+		\vlderivation{
+	\vliin{\cprule}{}{\wn A \;, \oc A }{
+		\vlin{ax}{}{A, \cneg{A}}{\vlhy{}}}{
+		\vliin{cut}{}{\wn A ,  \oc A}{
+			\vliin{\cprule}{}{\wn A,  {\oc A}}{
+				\vlin{ax}{}{A, \cneg{A}}{\vlhy{}}}{
+				\vliin{cut}{}{\wn A,  \oc A}{
+					\vlin{\cprule}{}{\wn A,\oc A}{
+						\vlhy{  \vdots
+						}
+					}
+				}{
+					\vlin{ax}{}{{\wn \cneg A},\oc A}{\vlhy{}}
+				}
+			}
+		}{
+			\vlin{ax}{}{{\wn \cneg A},\oc A}{\vlhy{}}
+		}
+	}
+}
+\]
+}
+\only<6-6>
+{
+	\[
+	\footnotesize
+	\vlderivation{
+		\vliin{\cprule}{}{\wn A \;, \red{\oc A} }{
+			\vlin{ax}{}{A, \cneg{A}}{\vlhy{}}}{
+			\vliin{cut}{}{\wn A ,  \red{\oc A}}{
+				\vliin{\cprule}{}{\wn A,  {\oc A}}{
+					\vlin{ax}{}{A, \cneg{A}}{\vlhy{}}}{
+					\vliin{cut}{}{\wn A,  \oc A}{
+						\vlin{\cprule}{}{\wn A,\oc A}{
+							\vlhy{  \vdots
+							}
+						}
+					}{
+						\vlin{ax}{}{{\wn \cneg A},{\oc A}}{\vlhy{}}
+					}
+				}
+			}{
+				\vlin{ax}{}{{\wn \cneg A},\red{\oc A}}{\vlhy{}}
+			}
+		}
+	}
+	\]
+}
+\only<7->
+{
+	\[
+	\footnotesize
+	\vlderivation{
+		\vliin{\cprule}{}{\wn A \;, \red{\oc A} }{
+			\vlin{ax}{}{A, \cneg{A}}{\vlhy{}}}{
+			\vliin{cut}{}{\wn A ,  \red{\oc A}}{
+				\vliin{\cprule}{}{\wn A,  \green{\oc A}}{
+					\vlin{ax}{}{A, \cneg{A}}{\vlhy{}}}{
+					\vliin{cut}{}{\wn A,  \green{\oc A}}{
+						\vlin{\cprule}{}{\wn A,\oc A}{
+							\vlhy{  \vdots
+							}
+						}
+					}{
+						\vlin{ax}{}{{\wn \cneg A},\green{\oc A}}{\vlhy{}}
+					}
+				}
+			}{
+				\vlin{ax}{}{{\wn \cneg A},\red{\oc A}}{\vlhy{}}
+			}
+		}
+	}
+	\]
+}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Regularity vs weak regularity}
+		\[
+	\footnotesize
+	\begin{array}{c}
+		\langle \der_1, \der_2, \ldots, \der_n, \ldots \rangle \qquad \sim \qquad 
+			\vlderivation{
+			\vliin{\cprule}{}{\wn \Gamma, \oc A}{\vldr{\der_0}{\Gamma, A}}{
+				\vliin{\cprule}{}{{\wn \Gamma, \oc A}}{\vldr{\der_1}{\Gamma, A}}{				 			
+					\vliin{\cprule}{}{\reflectbox{$\ddots$}}{\vldr{\der_n}{\Gamma, A}}{
+						\vlin{\cprule}{}{{\wn \Gamma, \oc A}}{\vlhy{\vdots}}
+					}
+				}
+			}
+		}
+	\end{array}
+	\]
+	\medskip 
+	\begin{itemize} 
+			\item \structure{Weakly regular} = finitely many distinct subproofs whose conclusions are left premises of $cp$ rules
+	\medskip
+	\item[]  The stream has \textbf{finite support}: $\{\der_i \ \vert \ i \in \mathbb{N}\}$ is finite.
+\bigskip	\medskip\pause 
+\item \structure{Regular} proof = finitely many distinct subproofs
+\medskip
+\item[]The stream is \textbf{periodic}: there is $k, i_0\geq 0$ s.t.  $\der_{i}=\der_{i+k}$ ($i \geq i_0$)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{A concrete example\ldots}
+	\medskip
+\begin{itemize}
+	\item[] Boolean data type $\Bool \dfn \ ({\cneg X}  \parr {\cneg X}) \parr ({X} \otimes {X})$. Boolean values: 
+	\[
+	\hspace{-0.8cm}
+	\footnotesize
+	 \cod \true  \  \dfn\ 
+	\vlderivation{
+		\vlin{\parr}{}{(\green{\cneg X}  \parr \orange{\cneg X}) \parr  (\green{X} \otimes \orange{X}) }{
+			\vlin{\parr}{}{ (\green{\cneg X}  \parr \orange{\cneg X}) , (\green{X} \otimes \orange{X})}
+			{\vliin{\otimes}{}{ \green{\cneg X}  ,  \orange{\cneg X} ,  \green{X} \otimes \orange{X}}
+				{\vlin{ax}{}{\green{\cneg X}, \green{X}}{\vlhy{}}}
+				{\vlin{ax}{}{\orange{\cneg X}, \orange{X}}{\vlhy{}}}
+			}
+		}
+	}  \qquad \qquad 
+\cod \false\  \dfn \  \vlderivation{
+		\vlin{\parr}{}{(\orange{\cneg X} \parr \green{\cneg X}) \parr (\green{X} \otimes \orange{X}) }{
+			\vlin{\parr}{}{ (\orange{\cneg X} \parr \green{\cneg X}) , (\green{X} \otimes \orange{X})}
+			{\vliin{\otimes}{}{ \green{\cneg X}  ,  \orange{\cneg X} ,  \green{X} \otimes \orange{X}}
+				{\vlin{ax}{}{\green{\cneg X}, \green{X}}{\vlhy{}}}
+				{\vlin{ax}{}{\orange{\cneg X}, \orange{X}}{\vlhy{}}}
+			}
+		}
+	}   
+	\]
+%	\[	\footnotesize \vlderivation{
+%		\vlin{\forall}{}{
+%			\vlin{\parr}{}{( {X^\bot_1}  \parr  {X^\bot_2}) \parr ({X_3} \otimes {X_4})}
+%			{\forall X.({X^\bot}  \parr { X^\bot}) \parr ({X} \otimes X) }
+%		}{
+%			\vlin{\parr}{}{ ({ X_1^\bot}  \parr { X^\bot_2}) , ({X_3} \otimes {X_4})}
+%			{\vliin{\otimes}{}{ { X^\bot_1}  ,  { X^\bot_2} ,  {X_3} \otimes {X_4}}
+%				{\vlin{ax}{}{{ X^\bot_1}, {X_3}}{\vlhy{}}}
+%				{\vlin{ax}{}{{ X^\bot_2}, {X_4}}{\vlhy{}}}
+%			}
+%		}
+%	}  
+%	%
+%\qquad \qquad 
+%	%
+%	%		\trueder
+%	%		\dfn
+%	\vlderivation{
+%		\vlin{\forall}{}{
+%			\vlin{\parr}{}{( {X^\bot_1}  \parr  {X^\bot_2}) \parr ({X_3} \otimes {X_4})}
+%			{\forall X.({X^\bot}  \parr { X^\bot}) \parr ({X} \otimes X) }
+%		}{
+%			\vlin{\parr}{}{ ({ X_1^\bot}  \parr { X^\bot_2}) , ({X_3} \otimes {X_4})}
+%			{\vliin{\otimes}{}{ { X^\bot_1}  ,  { X^\bot_2} ,  {X_3} \otimes {X_4}}
+%				{\vlin{ax}{}{{ X^\bot_1}, {X_4}}{\vlhy{}}}
+%				{\vlin{ax}{}{{ X^\bot_2}, {X_3}}{\vlhy{}}}
+%			}
+%		}
+%	}
+%\]  
+\medskip
+\item[] \green{\textbf{Example:}} 
+\only<1-1>{
+	\[
+	\footnotesize
+	\begin{array}{c}
+		\vlderivation{
+			\vliin{\cprule}{}{\oc \Bool}{\vldr{\cod{\true}}{\Bool}}{
+				\vliin{\cprule}{}{\oc \Bool}{\vldr{\cod{\false}}{\Bool}}{						 			
+					\vliin{\cprule}{}{\oc \Bool}{\vldr{\cod{\true}}{\Bool}}{
+						\vliin{\cprule}{}{\oc \Bool}{\vldr{\cod{\false}}{\Bool}}{			
+							\vlin{cp}{}{\oc \Bool}{\vlhy{\vdots}}
+						}
+					}
+				}
+			}
+		}\\\\
+		\langle \cod{\true}, \cod{\false}, \cod{\true}, \cod{\false},\cod{\true}, \cod{\false},  \ldots \rangle
+	\end{array}
+	\]
+}
+\only<2->{
+	\[
+\footnotesize
+\begin{array}{c}
+	\vlderivation{
+		\vliin{\cprule}{}{\oc \Bool}{\vldr{\cod{\true}}{\Bool}}{
+			\vliin{\cprule}{}{\oc \Bool}{\vldr{\cod{\false}}{\Bool}}{						 			
+					\vliin{\cprule}{}{\oc \Bool}{\vldr{\cod{\true}}{\Bool}}{
+						\vliin{\cprule}{}{\oc \Bool}{\vldr{\cod{\true}}{\Bool}}{			
+\vlin{cp}{}{\oc \Bool}{\vlhy{\vdots}}
+						}
+					}
+			}
+		}
+	}\\\\
+\langle \cod{\true}, \cod{\false}, \cod{\true}, \cod{\true}, \cod{\false}, \cod{\true}, \cod{\true}, \cod{\true}, \cod{\false},  \ldots \rangle
+\end{array}
+\]
+}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Finite expandability}
+	\medskip
+	\begin{itemize}
+	 \item \structure{Finitely expandable} proof = any branch contains finitely many $cut$ and $abs$ rules
+	 \medskip
+	\item[] \green{\textbf{ Example:}} 
+\[
+\hspace{-1cm}
+\small
+	 %		\vlderivation{
+	 	%			\vliin{\cutr}{\cycle}{\Gamma, \tikzmarknode{a}{A}}{
+	 		%				\vlin{\axr}{}{\cneg A, A}{\vlhy{}}
+	 		%			}{
+	 		%				\vlin{\cutr}{\cycle}{\Gamma,  \tikzmarknode{b}{A}}{\vlhy{}}
+	 		%			}
+	 	%		}
+	 {\vlderivation{
+	 		\vliin{cut}{}
+	 		{\Gamma, A}
+	 		{
+	 			\vlin{ax}{}{\cneg A, A}{\vlhy{}}
+	 		}
+	 		{
+	 			\vliin{cut}{}
+	 			{\Gamma,  A}
+	 			{
+	 				\vlin{ax}{}{\cneg A, A}{\vlhy{}}
+	 			}
+	 			{\vlin{cut}{}{\Gamma, A}{\vlhy{\vdots}}}
+	 		}
+	 }}
+	 \qquad \qquad  \qquad  
+	 \vlsmash{\vlderivation{
+	 		\vlin{abs}{}{\wn A}{
+	 			\vlin{abs}{}{A, \wn A}{
+	 				\vlin{abs}{}{A, A, \wn A}{\vlhy{\vdots}}
+	 			}
+	 		}
+	 }}
+\]
+\bigskip\bigskip\pause 
+\coloreditem{myred} \red{\textbf{Theorem:}}  \textbf{decomposition} for finitely expandable and progressing proofs
+\[
+\small
+\vlderivation{
+\vltr{\der}{\Gamma}{\vlhy{\vdots}}{\vlhy{\qquad \vdots \qquad }}{\vlhy{\vdots}}
+} \qquad = \qquad 
+{\vlnostructuressyntax
+\vlderivation{
+ \vltrf{\textrm{finite}}{\Gamma}{\vltr{\textrm{{nw-box}}}{\scalebox{0.7}{$\wn  \Delta_1, \oc A_1$}}{\vlhy{\ \ \ }}{\vlhy{\ \ \ }}{\vlhy{\ \  \ }}}{\vlhy{\ldots}}{\vltr{{\textrm{nw-box}}}{\scalebox{0.7}{$\wn \Delta_n, \oc A_n$}}{\vlhy{\ \ \ }}{\vlhy{\ \ \ }}{\vlhy{\ \ \ }}}
+{0.5}
+}
+}
+\]
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Two non-wellfounded proof systems}
+	\medskip
+\begin{itemize}
+	\item 	 Two non-wellfounded proof systems:
+	\begin{itemize}
+		\smallskip
+		\item[]  \structure{$\nupll$} = progressing weakly regular and finitely expandable  proofs 
+		\smallskip
+		\item[] \structure{$\cpll$} = progressing regular  and finitely expandable   proofs 
+	\end{itemize}
+\bigskip\pause 
+\item Relating inductive and non-wellfounded systems:
+$$
+	\begin{tabular}{|c||c|c|}
+		\hline
+		& \textrm{inductive} & \textrm{non-wellfounded} \\ \hline \hline
+		\textrm{uniform} & $ \pll$ &$\cpll$ \\ \hline
+		\textrm{non-uniform}&$ \dpll$& $\nupll$ \\ \hline
+	\end{tabular}
+	$$
+	\begin{itemize}
+		\medskip\pause 
+		\item[(1)] Provability:  \[\pll = \dpll= \cpll= \nupll\]
+		\item[(2)] Proof-theoretically: 
+		\[
+		\begin{tikzcd}[ampersand replacement = \&, column sep= large]
+			\pll\arrow[d, "\subseteq"]  \arrow[r, "simulation"]\& \cpll \arrow[d, "\subseteq"] \\
+			\dpll \arrow[r,"simulation" ]\& \nupll 
+		\end{tikzcd}
+	\]
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+	\section{Continuous cut-elimination}
+		\begin{frame}[plain, noframenumbering]
+		\tableofcontents[currentsection]
+	\end{frame}
+	
+
+	\begin{frame}{Finitary vs continuous cut-elimination}
+		\begin{itemize}
+		 \item \textbf{Cut-elimination for (finitary, inductive) proofs:} finite rewriting strategies pushing upward the topmost cut rule to stepwise decrease an  appropriate termination ordering 
+		 \medskip\pause 
+		 \item \textbf{Dual approach for non-wellfounded proofs:} infinite rewriting strategies to gradually push upward the bottommost cut and stepwise construct increasing approximations of the cut-free proof (\emph{productivity}),  obtained as a \emph{limit}. 
+		 \bigskip \bigskip \pause 
+		 \coloreditem{myred} \red{\textbf{Major obstacle:}} what if the bottommost cut is right below another cut?
+		 \medskip\pause 
+		 \item[] \textbf{A solution:} use a \emph{multicut} (simply merge cuts piled up)
+		 \medskip\pause 
+		 \item[] \textbf{This talk:}  alternative route,  borrowing notions from \emph{domain theory}!
+		\end{itemize}
+	\end{frame}
+
+\begin{frame}{Our domain-theoretic approach}
+ 
+ Starting from non-wellfonded proof $\der$:
+\begin{itemize}
+	\bigskip
+	\item  Special \textbf{infinitary rewriting strategies} $\sigma$  that induce continuous functions  over domains of (partially defined) non-wellfounded proofs
+	\bigskip\pause 
+	\item \textbf{Productivity:} If $\der$ is  progressing non-wellfounded proof then $f_\sigma (\der)$ is (cut-free and)  totally defined 
+	\bigskip\pause 
+	\item   $f_\sigma$ \textbf{preserves} progressing, (weak) regularity and finite expandability conditions
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Approximating non-wellfounded proofs}
+	\medskip
+	\begin{itemize}
+		\item[(1)] A new rule: the \textbf{hypothesis}
+		\[
+	\vlinf{\zero}{}{\Gamma}{}
+		\]\pause 
+		\smallskip
+		\item[(2)] \structure{Open  proof} = non-wellfounded proof that might contain $\zero$
+		\bigskip\pause
+		\item[(3)] \structure{Normal open proof} = proofs where $cut$ rules  are irreducible (e.g., cut between  hypotheses)
+		\bigskip\pause
+		\item[(4)]  \structure{$\opll(\Gamma)$} = domain of open proofs with endsequent $\Gamma$:
+		\only<1-4>{
+			\[
+			\hspace{3cm}
+		\footnotesize
+			{\vlnostructuressyntax
+			\vlderivation{
+				\vltrf{}{\Gamma}
+				{
+					\vlhy{\scalebox{0.7}{$\ldots$}}
+				}
+				{
+					\vlin{\zero}{}{\scalebox{0.7}{$\Delta$}}{\vlhy{}}
+				}
+				{
+					\vlhy{\scalebox{0.7}{$\ldots$}}
+				}
+				{0.5}
+			}
+		}
+				\qquad \preceq \qquad 
+	{\vlnostructuressyntax
+		\vlderivation{
+			\vltrf{}{\Gamma}
+			{
+				\vlhy{\scalebox{0.7}{$\ldots$}}
+			}
+			{
+				\vltrf{}{\scalebox{0.7}{$\Delta$}}{\vlhy{}}{\vlhy{\scalebox{0.7}{$\ldots$}  }}{\vlhy{}}
+				{0.5} 
+			}
+		{
+			\vlhy{\scalebox{0.7}{$\ldots$}}
+		}
+			{0.5}
+		}
+	}
+%
+\visible<1-3>{
+	\phantom{
+\tiny
+{\vlnostructuressyntax
+	\vlderivation{
+		\vltrf{}{\Gamma}
+		{
+			\vltrf{}{\scalebox{0.7}{$\Delta_1$}}{\vlin{\zero}{}{\scalebox{0.7}{$\Sigma_1$}}{\vlhy{}}}{\vlhy{\scalebox{0.7}{$\ldots$}  }}{\vlin{\zero}{}{\scalebox{0.7}{$\Sigma_{k_1}$}}{\vlhy{}}}
+			{0.5}	
+		}
+		{
+			\vlhy{\scalebox{0.7}{$\ldots$}}
+		}
+		{
+			\vltrf{}{\scalebox{0.7}{$\Delta_n$}}{\vlin{\zero}{}{\scalebox{0.7}{$\Theta_1$}}{\vlhy{}}}{\vlhy{\scalebox{0.7}{$\ldots$}  }}{\vlin{\zero}{}{\scalebox{0.7}{$\Theta_{k_n}$}}{\vlhy{}}}
+			{0.5} 
+		}
+		{0.5}
+	}
+}
+}
+}
+	\]
+}
+		\only<5->{
+		\[
+		\tiny
+		\vlderivation{
+		\vlin{\zero}{}{\Gamma}{\vlhy{}}
+	}
+\quad \preceq \quad 
+{\vlnostructuressyntax
+	\vlderivation{
+	\vltrf{}{\Gamma}{\vlin{\zero}{}{\scalebox{0.7}{$\Delta_1$}}{\vlhy{}}}{\vlhy{\scalebox{0.7}{$\ldots$}}}{\vlin{\zero}{}{\scalebox{0.7}{$\Delta_n$}}{\vlhy{}}}
+{0.5}
+}
+}
+\quad \preceq \quad 
+{\vlnostructuressyntax
+\vlderivation{
+	\vltrf{}{\Gamma}
+	{
+			\vltrf{}{\scalebox{0.7}{$\Delta_1$}}{\vlin{\zero}{}{\scalebox{0.7}{$\Sigma_1$}}{\vlhy{}}}{\vlhy{\scalebox{0.7}{$\ldots$}  }}{\vlin{\zero}{}{\scalebox{0.7}{$\Sigma_{k_1}$}}{\vlhy{}}}
+{0.5}	
+}
+   {
+   	\vlhy{\scalebox{0.7}{$\ldots$}}
+   }
+  {
+  		\vltrf{}{\scalebox{0.7}{$\Delta_n$}}{\vlin{\zero}{}{\scalebox{0.7}{$\Theta_1$}}{\vlhy{}}}{\vlhy{\scalebox{0.7}{$\ldots$}  }}{\vlin{\zero}{}{\scalebox{0.7}{$\Theta_{k_n}$}}{\vlhy{}}}
+{0.5} 
+ }
+{0.5}
+}
+}
+\quad \preceq \quad  \ldots \quad 
+%		\vlderivation{
+%		\vltr{\der}{\Gamma}{\vlhy{\ \ \vdots \ \ }}{\vlhy{\ \ \vdots \ \ }}{\vlhy{\ \ \vdots \ \ }}
+%	}
+		\]
+	}
+	\end{itemize}
+\end{frame}
+
+\newcommand{\cf}[1]{\mathsf{cf}{(#1)}}
+
+\begin{frame}{Infinitary cut-elimination strategies}
+	\medskip
+	\begin{itemize}
+		\item \structure{Infinitary cut-elimination strategy ($\ices$)}  $\dfn $ \   family  $\sigma = (\sigma_\der )_{\der \in \opll}$ where each  $\sigma_\der$ is a  countable sequence of proofs  such that:
+		\[
+		\der= \sigma_\der(0) \rightsquigarrow  \sigma_\der(1) \rightsquigarrow \ldots \rightsquigarrow  \sigma_\der(n) \rightsquigarrow\ldots
+		\]
+		\smallskip\pause 
+		\item Given an $\ices$ $\sigma$ we define   $f_\sigma \colon \opll(\Gamma) \to \opll(\Gamma)$ as 
+		\[
+		f_\sigma (\der)\dfn \bigsqcup_{i=0}^{\ell(\sigma_\der)}\cf{\sigma_{\der}(i)}
+		\]
+		where $\cf{\der_i}$ is the greatest cut-free approximation of $\der_i$ (w.r.t.~$\preceq$)
+		\medskip\pause 
+		\item A $\ices$ $\sigma$ is:
+		\begin{itemize}
+			\smallskip
+		\item \structure{Maximal} if,  for any finite open proof,  $\ell(\sigma_\der)$ (is finite and) is normal
+		\smallskip
+		\item \structure{(Scott-)continuous} is $f_\sigma$ is
+		\end{itemize}
+	\medskip\pause 
+	\item  \textbf{Maximal continuous infinitary cut-elimination strategies} ({$\mcices$}).
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Continuous cut-elimination theorem}
+	\medskip
+	\begin{itemize}
+		\item \textbf{Existence of $\mcices$:} intuitively, always apply a cut-elimination step to the leftmost reducible $cut$ rule with minimal height.
+		\medskip
+		\item \textbf{Confluence:}  if $\sigma$ and $\sigma'$ are $\mcices$, then $f_{\sigma}=f_{\sigma'}$
+		\bigskip\bigskip\pause 
+		\coloreditem{myred} \red{\textbf{Theorem (Continuous cut-elimination):}} Given $\sigma$ a $\mcices$:
+		\medskip
+		\begin{itemize}
+			 	\item[(1)]   $\der$ is progressing then $f_\sigma (\der)$ is $\zero$-free (\emph{productivity})
+			\medskip
+			\item[(2)]   $f_\sigma$ preserves progressing and finite expandability 
+\medskip
+			\item[(3)] If $\der \in \nupll$ then $f_\der(\der)\in \nupll$
+			\medskip
+			 \item[(4)] If $\der \in \cpll$ then $f_\der(\der)\in \cpll$
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{Preservation of (weak) regularity}
+	\medskip
+\begin{itemize}
+\item[] \red{\textbf{Theorem:}} If $\der \in \nupll$  then $f_\der(\der)\in \nupll$ (similarly for $\cpll$) 
+	\medskip
+	\item[] \textbf{Proof idea.} We use decomposition:
+	\[
+	\tiny
+	\der \quad = \quad 
+	{\vlnostructuressyntax
+		\vlderivation{
+			\vltrf{\textrm{finite}}{\Gamma}{\vltr{\textrm{{nw-box}}}{\scalebox{0.7}{$\wn  \Delta_1, \oc A_1$}}{\vlhy{\ \ \ }}{\vlhy{\ \ \ }}{\vlhy{\ \  \ }}}{\vlhy{\ldots}}{\vltr{{\textrm{nw-box}}}{\scalebox{0.7}{$\wn \Delta_n, \oc A_n$}}{\vlhy{\ \ \ }}{\vlhy{\ \ \ }}{\vlhy{\ \ \ }}}
+			{0.5}
+		}
+	}
+	\]\pause 
+	\item[] We define a transfinite cut-elimination sequence preserving (weak) regularity  by induction on the ``nesting"  of non-wellfounded boxes: 
+	\only<1-2>{
+		\[
+	\tiny
+	\begin{array}{c}
+		\vlderivation{
+			\vliin{cut}{}{\wn\Gamma, \wn \Delta, \oc C}
+			{
+			\vliin{cp}{}{\wn \Gamma, \oc A}{\vldr{\der_0}{\Gamma, A}}{
+				\vliin{cp}{}{{\wn \Gamma, \oc A}}{\vldr{\der_1}{\Gamma, A}}{				 			
+					\vliin{cp}{}{\reflectbox{$\ddots$}}{\vldr{\der_n}{\Gamma, A}}{
+						\vlin{cp}{}{{\wn \Gamma, \oc A}}{\vlhy{\vdots}}
+					}
+				}
+			}
+		}
+		{
+			\vliin{cp}{}{\wn \Delta, \wn \cneg{A} \oc C}{\vldr{\der'_0}{\Delta, \cneg A, C }}{
+			\vliin{cp}{}{{\wn \Delta, \wn \cneg{A} \oc C}}{\vldr{\der'_1}{\Delta, \cneg A, C}}{				 			
+				\vliin{cp}{}{\reflectbox{$\ddots$}}{\vldr{\der'_n}{\Delta, \cneg A, C}}{
+					\vlin{cp}{}{{\wn \Delta, \wn \cneg{A} \oc C}}{\vlhy{\vdots}}
+				}
+			}
+		}
+	}
+		}
+	\end{array}
+	\]
+}
+	\only<3-3>{
+	\[
+	\tiny
+	\begin{array}{c}
+		\vlderivation{
+				\vliin{cp}{}{\wn \Gamma, \wn \Delta \oc C}
+				{
+					\vliin{cut}{}{\Gamma, \Delta, C}
+					{\vldr{\der_0}{\Gamma, A}}
+					{\vldr{\der'_0}{\Delta, \cneg A, C}}
+				}{
+					\vliin{cp}{}{{\wn \Gamma, \wn \Delta \oc C}}
+					{
+						\vliin{cut}{}{\Gamma, \Delta, C}
+					{\vldr{\der_1}{\Gamma, A}}
+					{\vldr{\der'_1}{\Delta, \cneg A, C}}
+					}{				 			
+						\vliin{cp}{}{\reflectbox{$\ddots$}}
+						{
+					  	\vliin{cut}{}{\Gamma, \Delta, C}
+					  {\vldr{\der_n}{\Gamma, A}}
+					  {\vldr{\der'_n}{\Delta, \cneg A, C}}
+				   }{
+							\vlin{cp}{}{{\wn \Gamma, \wn \Delta \oc C}}{\vlhy{\vdots}}
+						}
+					}
+				}
+			}
+	\end{array}
+	\]
+}
+\only<4->{
+\[
+\tiny
+\vlderivation{
+	\vliin{cp}{}{\wn \Gamma, \oc A}{\vldr{\der^*_0}{\Gamma, A}}{
+	\vliin{cp}{}{{\wn \Gamma, \oc A}}{\vldr{\der^*_1}{\Gamma, A}}{				 			
+		\vliin{cp}{}{\reflectbox{$\ddots$}}{\vldr{\der^*_n}{\Gamma, A}}{
+			\vlin{cp}{}{{\wn \Gamma, \oc A}}{\vlhy{\vdots}}
+		}
+	}
+}
+}
+\]
+}
+\pause 
+\item[] We compress the transfinite sequence to an $\omega$-long one~\cite{Saurin, Terese}
+\end{itemize}
+	
+\end{frame}
+
+
+\section{Conclusion and future work}
+\begin{frame}[plain, noframenumbering]
+	\tableofcontents[currentsection]
+\end{frame}
+	
+	\begin{frame}{Conclusion and future work}
+\begin{itemize}
+	\item \textbf{To sum up:} We introduced two non-wellfounded proof systems $\nupll$ and $\cpll$ and showed a continuous cut-elimination result with preservation of proof-theoretic properties such as progressing condition and (weak) regularity
+	\bigskip\bigskip\pause 
+	\item \textbf{Ongoing work:} building on \emph{Cyclic Implicit Complexity} (i.e., computational complexity in the setting of cyclic and non-wellfounded proof theory) \cite{CurziDas1,CurziDas2}, in a follow up paper   (to appear soonish!)  we prove that:
+	\[
+	\nupll_{\red{2}}= \fppoly \qquad \qquad 	\nupll_{\red{2}}=\fptime
+	\]
+	\begin{itemize}
+		\item[(1)]  Non-wellfounded formulation of he characterisation results for parmonious logic in~\cite{MazzaT15}.\medskip
+		\item[(2)] Proof-theoretical non-uniformity (given in terms of weak regularity condition) corresponds precisely to complexity-theoretic notion of non-uniformity.
+	\end{itemize}
+	
+\end{itemize}
+	\end{frame}
+	
+		\begin{frame}[plain, noframenumbering,allowframebreaks]
+		\begin{center}
+			\Large{{Thank you!  Questions?}}
+		\end{center}
+		\bigskip
+		\textbf{References}:
+		\medskip
+		\tiny
+		\bibliographystyle{amsalpha}
+		\bibliography{main}
+	\end{frame}
+	
+	
+	
+
+
+	\appendix
+	
+	\begin{frame}[plain, noframenumbering]
+		\begin{center}
+			\Large{Appendix}
+		\end{center}
+	\end{frame}
+\begin{frame}{Linear logic in a nutshell}
+	\medskip
+	\begin{itemize}
+		\item Introduced by J. Y. Girard~\cite{Girard87} as refinement of  both classical and intuitionistic logic:
+		\[\text{\textbf{classical dualities} }\ + \  \text{\textbf{constructive content}}
+		\]
+		\smallskip\vspace{-0.4cm}
+		\item Structural rules replaced by logical rules for \structure{exponential modalities $\oc$ and $\wn$}:
+		\[
+		\small
+		\vlinf{d}{}{\Gamma, \wn A}{\Gamma,  A} \qquad \quad 
+		\vlinf{p}{}{\wn \Gamma, \oc A}{\wn \Gamma, A}\qquad \quad 
+		\vlinf{w}{}{\Gamma, \wn A}{\Gamma}\qquad \quad 
+		\vlinf{c}{}{\Gamma, \wn A}{\Gamma, \wn A, \wn A}
+		\]
+		\bigskip	\pause
+		\item[] \textbf{Features} of linear logic:
+		\smallskip
+		\begin{itemize}
+			\item[(1)] Dualities: $\wn A= (\oc A^\perp)^\perp$\smallskip
+			\item[(2)] Decomposition of intuitionistic implication: $A \to B \simeq \oc A \multimap B$\smallskip
+			\item[(3)] Splitting of connectives:
+			\[
+			\small
+			\begin{tabular}{|c||c|c|}
+				\hline
+				& \textrm{multiplicative}&\textrm{additive}\\ \hline \hline
+				$\wedge$ &$\red{\otimes} $&$\with$\\ \hline
+				$\vee $& $\red{\parr}$& $\oplus$\\ \hline
+				%				\textrm{tt} & \textbf{1}&$\top$\\ \hline
+				%				\textrm{ff} &$\bot$& \textrm{0} \\\hline
+			\end{tabular}
+			\]
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+	\begin{frame}{{Cut-elimination rules} for non-wellfounded parsimonious logic}
+	\begin{itemize}
+		\item \textbf{Cut-elimination rules} for the exponential modalities $\oc$ and $\wn$:
+		\smallskip
+		\[
+		\scriptsize
+		\begin{array}{c}
+			%			\hline&\\[-10pt]
+			%			\cprule\vs\cprule
+			%			&
+			%		
+			\vlderivation{
+				\vliin{cut}{}{\wn \Gamma, \wn \Delta, \oc B}{
+					\vliin{\cprule}{}{\wn \Gamma, \oc A}{
+						\vlhy{\Gamma, A}
+					}{
+						\vlhy{\wn \Gamma, \oc A}
+					}
+				}{
+					\vliin{\cprule}{}{\wn \cneg A\!, \wn \Delta, \oc B}{
+						\vlhy{\cneg{A}\!, \Delta, B}
+					}{
+						\vlhy{\wn \cneg{A}\!, \wn \Delta, \oc B}
+					}
+				}
+			}
+			\rightsquigarrow
+			\vlderivation{
+				\vliin{\cprule}{}{\wn \Gamma, \wn \Delta, \oc B}{
+					\vliin{cut}{}{\Gamma, \Delta, B}{
+						\vlhy{\Gamma, A}
+					}{
+						\vlhy{\cneg A, \Delta, B}
+					}
+				}{
+					\vliin{cut}{}{\wn\Gamma, \wn\Delta,\oc B}{
+						\vlhy{\wn\Gamma, \oc A}
+					}{
+						\vlhy{\wn \cneg{A}\!, \wn \Delta, \oc B}
+					}
+				}
+			}
+			%			\\\hline&\\[-10pt]
+			%			\cprule\vs\wnwrule
+			\\\\
+			%		
+			\vlderivation{
+				\vliin{cut}{}{\wn \Gamma, \Delta}{
+					\vliin{\cprule}{}{\wn \Gamma, \oc A}{
+						\vlhy{\Gamma, A}
+					}{
+						\vlhy{\wn \Gamma, \oc A}
+					}
+				}{
+					\vlin{w}{}{\Delta,\wn \cneg A}{\vlhy{\Delta}}
+				}
+			}
+			\rightsquigarrow
+			\vlderivation{
+				\vliq{w}{}{\wn\Gamma,\Delta}{\vlhy{\Delta}}
+			}
+			%	
+			%			\\\hline&\\[-10pt]
+			%			\cprule\vs\wnbrule
+			\\\\
+			%		
+			\vlderivation{
+				\vliin{cut}{}{\wn \Gamma, \Delta}{
+					\vliin{\cprule}{}{\wn \Gamma, \oc A}{
+						\vlhy{\Gamma, A}
+					}{
+						\vlhy{\wn \Gamma, \oc A}
+					}
+				}{
+					\vlin{abs}{}{\Delta, \wn \cneg A}{
+						\vlhy{\Delta,\cneg{A}\!, \wn\cneg A}
+					}
+				}
+			}
+			\rightsquigarrow
+			\vldownsmash{\vlderivation{
+					\vliq{abs}{}{\wn\Gamma, \Delta}{
+						\vliin{cut}{}{\Gamma, \wn \Gamma,\Delta }{
+							\vlhy{\Gamma, A}
+						}{
+							\vliin{cut}{}{\wn\Gamma,  \Delta, \cneg A}{
+								\vlhy{\wn \Gamma,\oc A}
+							}{
+								\vlhy{\Delta, \cneg{A}\!, \wn \cneg A}
+							}
+						}
+					}
+			}}
+		\end{array}\]
+		\smallskip
+		\item[] \textbf{Fact.} Cut-elimination rules preserve progressing, (weak) regularity, and  finite expandability conditions
+		\medskip\pause 
+		\coloreditem{myred} \red{\textbf{Question:}} What about $\der \rightsquigarrow^{\infty} \der'$? How do we even make sense of it?
+	\end{itemize}
+\end{frame}
+\begin{frame}{Productivity and preservation of progressing condition}
+	\begin{itemize}
+		\item[]\red{\textbf{Theorem:}} 
+		\smallskip
+		\begin{itemize}
+			\item[(1)]   $\der$ is progressing then $f_\sigma (\der)$ is $\zero$-free (\emph{productivity})
+			\smallskip
+			\item[(2)]  $f_\sigma$ preserves progressing and finite expandability 
+		\end{itemize}
+		\medskip\pause 
+		\item[] \textbf{Proof idea.}  
+		%%\only<1-3>{Case 1:}
+		%\only<1-2->{Case 2:}
+		%	\only<1-2>{
+			%	\[
+			%	\tiny
+			%	\begin{array}{c}
+				%		\vlderivation{
+					%			\vliin{cut}{}{\wn\Gamma, \wn \Delta, \red{\oc C}}
+					%			{
+						%				\vliin{cp}{}{\wn \Gamma, \green{\oc A}}{\vldr{\der_0}{\Gamma, A}}{
+							%					\vliin{cp}{}{{\wn \Gamma, \green{\oc A}}}{\vldr{\der_1}{\Gamma, A}}{				 			
+								%						\vliin{cp}{}{\reflectbox{$\ddots$}}{\vldr{\der_n}{\Gamma, A}}{
+									%							\vlin{cp}{}{{\wn \Gamma, \green{\oc A}}}{\vlhy{\vdots}}
+									%						}
+								%					}
+							%				}
+						%			}
+					%			{
+						%				\vliin{cp}{}{\wn \Delta, \wn \cneg{A} \red{\oc C}}{\vldr{\der'_0}{\Delta, \cneg A, C }}{
+							%					\vliin{cp}{}{{\wn \Delta, \wn \cneg{A} \red{\oc C}}}{\vldr{\der'_1}{\Delta, \cneg A, C}}{				 			
+								%						\vliin{cp}{}{\reflectbox{$\ddots$}}{\vldr{\der'_n}{\Delta, \cneg A, C}}{
+									%							\vlin{cp}{}{{\wn \Delta, \wn \cneg{A} \red{\oc C}}}{\vlhy{\vdots}}
+									%						}
+								%					}
+							%				}
+						%			}
+					%		}
+				%	\end{array}
+			%	\]
+			%}
+		%	\only<3-3>{
+			%	\[
+			%	\tiny
+			%	\begin{array}{c}
+				%		\vlderivation{
+					%			\vliin{cp}{}{\wn \Gamma,  \Delta { C}}
+					%			{
+						%				\vliin{cut}{}{\Gamma, \Delta, C}
+						%				{\vldr{\der_0}{\Gamma, A}}
+						%				{\vldr{\der'_0}{\Delta, \cneg A, C}}
+						%			}{
+						%				\vliin{cp}{}{{\wn \Gamma, \wn \Delta \red{\oc C}}}
+						%				{
+							%					\vliin{cut}{}{\Gamma, \Delta, C}
+							%					{\vldr{\der_1}{\Gamma, A}}
+							%					{\vldr{\der'_1}{\Delta, \cneg A, C}}
+							%				}{				 			
+							%					\vliin{cp}{}{\reflectbox{$\ddots$}}
+							%					{
+								%						\vliin{cut}{}{\Gamma, \Delta, C}
+								%						{\vldr{\der_n}{\Gamma, A}}
+								%						{\vldr{\der'_n}{\Delta, \cneg A, C}}
+								%					}{
+								%						\vlin{cp}{}{{\wn \Gamma, \wn \Delta \red{\oc C}}}{\vlhy{\vdots}}
+								%					}
+							%				}
+						%			}
+					%		}
+				%	\end{array}
+			%	\]
+			%}
+		\only<1-2>{
+			\[
+			\tiny
+			\begin{array}{c}
+				\vlderivation{
+					\vliin{cut}{}{\wn\Gamma, \Delta, { C}}
+					{
+						\vliin{cp}{}{\wn \Gamma, \green{\oc A}}{\vldr{\der_0}{\Gamma, A}}{
+							\vliin{cp}{}{{\wn \Gamma, \green{\oc A}}}{\vldr{\der_1}{\Gamma, A}}{				 			
+								\vliin{cp}{}{\reflectbox{$\ddots$}}{\vldr{\der_n}{\Gamma, A}}{
+									\vlin{cp}{}{{\wn \Gamma, \green{\oc A}}}{\vlhy{\vdots}}
+								}
+							}
+						}
+					}
+					{
+						\vlin{abs}{}{\Delta,  \red{\wn \cneg A} , C}
+						{
+							\vlin{abs}{}{\Delta,  A, \red{\wn \cneg A} , C}
+							{
+								\vlin{abs}{}{\Delta,  A, A,  \red{\wn \cneg A} , C}
+								{
+									\vlin{abs}{}{\Delta,  A, A, A,  \red{\wn \cneg A}, C}
+									{
+										\vlhy{\vdots}
+									}
+								}
+							}
+						}
+					}
+				}
+			\end{array}
+			\]
+		}
+		\only<3->
+		{
+			\[
+			\tiny
+			\begin{array}{c}
+				\vlderivation{
+					\vliin{cut}{}{\wn\Gamma, \Delta, { C}}
+					{
+						\vliin{cp}{}{\wn \Gamma, \green{\oc A}}{\vldr{\der_0}{\Gamma, A}}{
+							\vliin{cp}{}{{\wn \Gamma, \green{\oc A}}}{\vldr{\der_1}{\Gamma, A}}{				 			
+								\vliin{cp}{}{\reflectbox{$\ddots$}}{\vldr{\der_n}{\Gamma, A}}{
+									\vlin{cp}{}{{\wn \Gamma, \green{\oc A}}}{\vlhy{\vdots}}
+								}
+							}
+						}
+					}
+					{
+						\vlin{abs}{}{\Delta,   \red{\wn \cneg A} , C}
+						{
+							\vlin{abs}{}{\Delta,  A,  \red{\wn \cneg A} , C}
+							{
+								\vlin{abs}{}{\Delta,  A, A, \red{\wn \cneg A}, C}
+								{
+									\vlin{abs}{}{\Delta,  A, A, A,  \red{\wn \cneg A} , C}
+									{
+										\vlin{}{}{\vdots}
+										{
+											\vltr{\textrm{nw-box}}{\Delta,  A, \overset{n}{\ldots}, A,  \red{\wn \cneg A} , C}{\vlhy{\ \ \ }}{\vlhy{\ \ \ }}{\vlhy{ \ \ \ }}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			\end{array}
+			\]
+		}
+	\end{itemize}
+\end{frame}
+	
+	
+	
+	
+
+	
+	
+	
+
+		
+		
+		
+		
+		
+		
+	
+			
+		\end{document}
+
+
+
